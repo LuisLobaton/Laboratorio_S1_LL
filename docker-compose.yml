@@ -11,4 +11,4 @@ services:
     build: ./WEB02
     container_name: WEB02
     ports:
-      - "4801:80"
+      - "4001:80"
