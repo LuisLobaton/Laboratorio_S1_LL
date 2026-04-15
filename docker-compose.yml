@@ -1,19 +1,12 @@
-version: '3.8'
-
 services:
   # --- ENTORNO LOCALHOST ---
   web-localhost-01:
     build: ./WEB01
     container_name: web-localhost-01
-    ports: ["4001:80"]
-    networks: [red-publica]
-
-  api-localhost-01:
-    build: ./api
-    environment: [PORT=4002]
-    ports: ["4002:4002"]
-    networks: [red-publica, red-privada]
-    depends_on: [bd-localhost]
+    ports:
+      - "4001:80"
+    networks:
+      - red-publica
 
   bd-localhost:
     image: mysql:8.0
@@ -21,22 +14,19 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: laboratorio_db
-    ports: ["4003:3306"]
-    networks: [red-privada]
+    ports:
+      - "4003:3306"
+    networks:
+      - red-privada
 
   # --- ENTORNO DEV ---
   web-dev-01:
     build: ./WEB02
     container_name: web-dev-01
-    ports: ["5001:80"]
-    networks: [red-publica]
-
-  api-dev-01:
-    build: ./api
-    environment: [PORT=5002]
-    ports: ["5002:5002"]
-    networks: [red-publica, red-privada]
-    depends_on: [bd-dev]
+    ports:
+      - "5001:80"
+    networks:
+      - red-publica
 
   bd-dev:
     image: mysql:8.0
@@ -44,8 +34,10 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: laboratorio_db
-    ports: ["5003:3306"]
-    networks: [red-privada]
+    ports:
+      - "5003:3306"
+    networks:
+      - red-privada
 
 networks:
   red-publica:
