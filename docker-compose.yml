@@ -5,10 +5,25 @@ services:
     build: ./WEB01
     container_name: WEB01
     ports:
-      - "4000:80"
+      - "4001:80"
 
   web02:
     build: ./WEB02
     container_name: WEB02
     ports:
-      - "4001:80"
+      - "4000:80"
+
+  api01:
+    build: ./api
+    container_name: api01
+    ports:
+      - "4002:4002"
+
+  bd:
+    image: mysql:8.0
+    container_name: bd
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: laboratorio_db
+    ports:
+      - "4003:3306"
